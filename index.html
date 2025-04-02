@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameStation Nexus - Your Ultimate Gaming Hub</title>
+    <meta name="description" content="GameStation Nexus offers a variety of fun online games. Play fashion, puzzle and many more games for free!">
+    <link rel="canonical" href="https://gamestationNexus.com">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        apple: {
+                            blue: '#007AFF',
+                            gray: '#8E8E93',
+                            green: '#34C759',
+                            indigo: '#5856D6',
+                            pink: '#FF2D55',
+                            purple: '#AF52DE',
+                            red: '#FF3B30',
+                            teal: '#5AC8FA',
+                            yellow: '#FFCC00',
+                            dark: '#1D1D1F',
+                            light: '#F5F5F7'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .game-container {
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #eee;
+        }
+        
+        .game-container iframe {
+            transform: scale(1.2);
+            transform-origin: top center;
+        }
+
+        .game-thumbnail {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            cursor: pointer;
+        }
+        
+        .game-thumbnail:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .category-tabs {
+            display: flex;
+            overflow-x: auto;
+            padding: 10px 0;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .category-tab {
+            padding: 8px 15px;
+            border-radius: 20px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-tab.active {
+            background-color: #FF2D55;
+            color: white;
+        }
+
+        .date-label {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: white;
+            color: #FF2D55;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .play-count {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .game-thumbnail-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 0.75rem;
+            border-top-right-radius: 0.75rem;
+        }
+        
+        .game-page {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-apple-light text-apple-dark font-sans">
+    <!-- 导航栏 -->
+    <nav class="bg-apple-dark text-white p-4 sticky top-0 z-50">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <a href="#" class="text-2xl font-bold mb-2 md:mb-0">GameStation Nexus</a>
+            <ul class="flex space-x-6">
+                <li><a href="#home" class="hover:text-apple-blue transition-colors">Home</a></li>
+                <li><a href="#games" class="hover:text-apple-blue transition-colors">Games</a></li>
+                <li><a href="#about" class="hover:text-apple-blue transition-colors">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 主页部分 -->
+    <section id="home" class="py-16 bg-gradient-to-r from-apple-blue to-apple-purple">
+        <div class="container mx-auto px-4 text-center text-white">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Welcome to GameStation Nexus</h1>
+            <p class="text-xl max-w-3xl mx-auto mb-8">Your ultimate destination for free online games. Enjoy a diverse collection of games ranging from fashion styling to brain-teasing puzzles.</p>
+            <a href="#games" class="bg-white text-apple-purple px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all">Play Now</a>
+        </div>
+    </section>
+
+    <!-- 游戏分类导航 -->
+    <div class="container mx-auto px-4 mt-8">
+        <div class="category-tabs">
+            <div class="category-tab active">all</div>
+            <div class="category-tab">Dress up game</div>
+            <div class="category-tab">Simulated operation</div>
+            <div class="category-tab">Leisure puzzles</div>
+            <div class="category-tab">Action-adventure</div>
+        </div>
+    </div>
+
+    <!-- 游戏部分 -->
+    <section id="games-list-section" class="py-8 container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 text-apple-dark">Featured Games</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+             <!-- 游戏 1 -->
+<div class="game-thumbnail h-full flex flex-col" onclick="openGamePage('game1')">
+    <div class="relative">
+        <img src="图片/图片1.jpg"  alt="Hair Salon" class="game-thumbnail-img h-48 w-full object-cover">
+        <div class="date-label">2024/3/20</div>
+    </div>
+    <div class="p-4 flex-1 flex flex-col">
+        <h2 class="text-xl font-bold mb-2">Hair Salon</h2>
+        <p class="text-sm text-gray-600 mb-3">A charming and creative simulation game where you can showcase your hairstyling talents</p>
+        
+        <div class="flex flex-wrap gap-2 mb-3">
+            <span class="text-xs bg-pink-100 text-pink-600 px-2 py-1 rounded-full">Fashion</span>
+            <span class="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded-full">Beauty</span>
+            <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full">Simulation</span>
+        </div>
+        
+        <div class="text-xs text-gray-500 mb-3 flex-1">
+            <div>✓ Creative hairstyling</div>
+            <div>✓ Salon management</div>
+            <div>✓ Customer satisfaction</div>
+        </div>
+        
+        <div class="flex justify-between items-center mt-auto">
+            <div class="flex items-center gap-1">
+                <span class="text-pink-500">★</span>
+                <span class="font-bold">4.8</span>
+            </div>
+            <div class="text-sm text-gray-500">150,000 plays</div>
+            <button class="bg-pink-500 text-white px-4 py-2 rounded-full text-sm">Play the game</button>
+        </div>
+    </div>
+</div>
+          
+            <!-- 游戏 2 -->
+<div class="game-thumbnail h-full flex flex-col" onclick="openGamePage('game2')">
+    <div class="relative">
+        <img src="图片/图片2.jpg" alt="Mah Jong Connect" class="game-thumbnail-img h-48 w-full object-cover">
+        <div class="date-label">2024/3/19</div>
+    </div>
+    <div class="p-4 flex-1 flex flex-col">
+        <h2 class="text-xl font-bold mb-2">Mah Jong Connect</h2>
+        <p class="text-sm text-gray-600 mb-3">Challenge yourself with this classic tile-matching puzzle game for a relaxing and strategic experience</p>
+        
+        <div class="flex flex-wrap gap-2 mb-3">
+            <span class="text-xs bg-pink-100 text-pink-600 px-2 py-1 rounded-full">Puzzle</span>
+            <span class="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded-full">Strategy</span>
+            <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full">Casual</span>
+        </div>
+        
+        <div class="text-xs text-gray-500 mb-3 flex-1">
+            <div>✓ Classic mahjong tiles</div>
+            <div>✓ Multiple difficulty levels</div>
+            <div>✓ Timed challenges</div>
+        </div>
+        
+        <div class="flex justify-between items-center mt-auto">
+            <div class="flex items-center gap-1">
+                <span class="text-pink-500">★</span>
+                <span class="font-bold">4.6</span>
+            </div>
+            <div class="text-sm text-gray-500">120,000 plays</div>
+            <button class="bg-pink-500 text-white px-4 py-2 rounded-full text-sm">Play the game</button>
+        </div>
+    </div>
+</div>
+            
+            <!-- 游戏 3 -->
+            <div class="game-thumbnail h-full flex flex-col" onclick="openGamePage('game3')">
+                <div class="relative">
+                    <img src="图片/图片3.jpg" alt="Farm Village Tycoon" class="game-thumbnail-img h-48 w-full object-cover">
+                    <div class="date-label">2024/3/18</div>
+                </div>
+                <div class="p-4 flex-1 flex flex-col">
+                    <h2 class="text-xl font-bold mb-2">Farm Village Tycoon</h2>
+                    <p class="text-sm text-gray-600 mb-3">Build your dream farm, grow crops and manage resources in this addictive farm simulation</p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">farming</span>
+                        <span class="text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded-full">simulation</span>
+                        <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full">strategy</span>
+                    </div>
+                    
+                    <div class="text-xs text-gray-500 mb-3 flex-1">
+                        <div>✓ Crop management</div>
+                        <div>✓ Farm expansion</div>
+                        <div>✓ Resource collection</div>
+                    </div>
+                    
+                    <div class="flex justify-between items-center mt-auto">
+                        <div class="flex items-center gap-1">
+                            <span class="text-pink-500">★</span>
+                            <span class="font-bold">4.7</span>
+                        </div>
+                        <div class="text-sm text-gray-500">180,000 plays</div>
+                        <button class="bg-pink-500 text-white px-4 py-2 rounded-full text-sm">Play the game</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 游戏 4 -->
+            <div class="game-thumbnail h-full flex flex-col" onclick="openGamePage('game4')">
+    <div class="relative">
+        <img src="图片/图片4.jpg" alt="Hexa Sort" class="game-thumbnail-img h-48 w-full object-cover">
+        <div class="date-label">2024/3/17</div>
+    </div>
+    <div class="p-4 flex-1 flex flex-col">
+        <h2 class="text-xl font-bold mb-2">Hexa Sort</h2>
+        <p class="text-sm text-gray-600 mb-3">Challenge your brain with this hexagonal color sorting puzzle game</p>
+        
+        <div class="flex flex-wrap gap-2 mb-3">
+            <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full">Logic</span>
+            <span class="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded-full">Puzzle</span>
+            <span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">Strategy</span>
+        </div>
+        
+        <div class="text-xs text-gray-500 mb-3 flex-1">
+            <div>✓ Color sorting challenges</div>
+            <div>✓ Multiple difficulty levels</div>
+            <div>✓ Brain-teasing puzzles</div>
+        </div>
+        
+        <div class="flex justify-between items-center mt-auto">
+            <div class="flex items-center gap-1">
+                <span class="text-pink-500">★</span>
+                <span class="font-bold">4.5</span>
+            </div>
+            <div class="text-sm text-gray-500">200,000 plays</div>
+            <button class="bg-pink-500 text-white px-4 py-2 rounded-full text-sm">Play the game</button>
+        </div>
+    </div>
+           </div>
+           </section>
+
+    <!-- 游戏1页面 -->
+    <section id="game1Page" class="game-page py-8 container mx-auto px-4">
+        <div class="mb-4">
+            <button onclick="backToGamesList()" class="bg-apple-dark text-white px-4 py-2 rounded-md flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                </svg>
+                Back to Games
+            </button>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="p-6 bg-apple-dark text-white">
+                <h2 class="text-3xl font-bold">Hair Salon</h2>
+                <p class="text-lg mt-2">A charming and creative simulation game where you can showcase your hairstyling talents and manage your very own salon!</p>
+            </div>
+            
+            <div class="game-container h-[600px] relative">
+                <iframe 
+                    src="https://girlgamezone.pages.dev/game?id=fashion1" 
+                    class="absolute top-0 left-0 w-full h-full"
+                    style="clip-path: inset(80px 0px 0px 0px)"
+                    scrolling="no"
+                    frameborder="0"
+                    allowfullscreen
+                    id="game1-iframe"
+                ></iframe>
+            </div>
+            
+            <div class="p-6">
+                <h3 class="text-2xl font-bold mb-4 text-purple-500">Game Details</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-3">Description</h4>
+                        <p class="text-gray-700 mb-4">Hair Salon: Beauty Salon Game is a charming and creative simulation game where you can showcase your hairstyling talents and manage your very own salon! Style hair, apply makeup, and help your clients look their best.</p>
+                        
+                        <h4 class="text-xl font-semibold mb-3">How to Play</h4>
+                        <p class="text-gray-700 mb-4">Use your mouse to interact with game elements. Follow in-game instructions for specific controls.</p>
+                        
+                        <h4 class="text-xl font-semibold mb-3">Features</h4>
+                        <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                            <li>Multiple hairstyles and colors</li>
+                            <li>Makeup and accessory options</li>
+                            <li>Client management</li>
+                            <li>Salon decoration</li>
+                            <li>Unlock new tools and styles</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-xl font-semibold mb-3">Game Info</h4>
+                        <div class="space-y-2 text-gray-700">
+                            <p><span class="font-semibold">Category:</span> Fashion, Beauty, Simulation</p>
+                            <p><span class="font-semibold">Difficulty:</span> Easy</p>
+                            <p><span class="font-semibold">Released:</span> 2024/3/20</p>
+                            <p><span class="font-semibold">Rating:</span> ★★★★★ (4.8/5)</p>
+                            <p><span class="font-semibold">Plays:</span> 150,000</p>
+                        </div>
+                        
+                        <h4 class="text-xl font-semibold mt-6 mb-3">Tags</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-pink-100 text-pink-600 px-3 py-1 rounded-full">Fashion</span>
+                            <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full">Beauty</span>
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full">Simulation</span>
+                            <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full">Hairstyling</span>
+                            <span class="bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full">Salon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 游戏2页面 -->
+    <section id="game2Page" class="game-page py-8 container mx-auto px-4">
+        <div class="mb-4">
+            <button onclick="backToGamesList()" class="bg-apple-dark text-white px-4 py-2 rounded-md flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                </svg>
+                Back to Games
+            </button>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="p-6 bg-apple-dark text-white">
+                <h2 class="text-3xl font-bold">Mah Jong Connect</h2>
+                <p class="text-lg mt-2">Challenge yourself with this classic tile-matching puzzle game for a relaxing and strategic experience</p>
+            </div>
+            
+            <div class="game-container h-[600px] relative">
+                <iframe 
+                    src="https://girlgamezone.pages.dev/game?id=puzzle7" 
+                    class="absolute top-0 left-0 w-full h-full"
+                    style="clip-path: inset(80px 0px 0px 0px)"
+                    scrolling="no"
+                    frameborder="0"
+                    allowfullscreen
+                    id="game2-iframe"
+                ></iframe>
+            </div>
+            
+            <div class="p-6">
+                <h3 class="text-2xl font-bold mb-4">Game Details</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-3">Description</h4>
+                        <p class="text-gray-700 mb-4">Mah Jong Connect is an engaging tile-matching puzzle game where players need to connect identical mahjong tiles to remove them from the board. The game tests your observation skills, strategic thinking, and quick reflexes, offering a relaxing yet challenging casual gaming experience.</p>
+                        
+                        <h4 class="text-xl font-semibold mb-3">Features</h4>
+                        <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                            <li>Multiple tile designs</li>
+                            <li>Progressive difficulty levels</li>
+                            <li>Timed challenge mode</li>
+                            <li>Relaxed no-time-limit mode</li>
+                            <li>Beautiful visuals and sound effects</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-xl font-semibold mb-3">Game Info</h4>
+                        <div class="space-y-2 text-gray-700">
+                            <p><span class="font-semibold">Category:</span> Puzzle, Strategy, Casual</p>
+                            <p><span class="font-semibold">Difficulty:</span> Medium</p>
+                            <p><span class="font-semibold">Released:</span> 2024/3/19</p>
+                            <p><span class="font-semibold">Rating:</span> ★★★★☆ (4.6/5)</p>
+                            <p><span class="font-semibold">Plays:</span> 120,000</p>
+                        </div>
+                        
+                        <h4 class="text-xl font-semibold mt-6 mb-3">Tags</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-pink-100 text-pink-600 px-3 py-1 rounded-full">Puzzle</span>
+                            <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full">Strategy</span>
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full">Casual</span>
+                            <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full">Mahjong</span>
+                            <span class="bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full">Matching</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 游戏3页面 -->
+    <section id="game3Page" class="game-page py-8 container mx-auto px-4">
+        <div class="mb-4">
+            <button onclick="backToGamesList()" class="bg-apple-dark text-white px-4 py-2 rounded-md flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                </svg>
+                Back to Games
+            </button>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="p-6 bg-apple-dark text-white">
+                <h2 class="text-3xl font-bold">Farm Village Tycoon</h2>
+                <p class="text-lg mt-2">Build your dream farm, grow crops and manage resources in this addictive farm simulation</p>
+            </div>
+            
+            <div class="game-container h-[600px] relative">
+                <iframe 
+                    src="https://girlgamezone.pages.dev/game?id=puzzle3" 
+                    class="absolute top-0 left-0 w-full h-full"
+                    style="clip-path: inset(80px 0px 0px 0px)"
+                    scrolling="no"
+                    frameborder="0"
+                    allowfullscreen
+                    id="game3-iframe"
+                ></iframe>
+            </div>
+            
+            <div class="p-6">
+                <h3 class="text-2xl font-bold mb-4">Game Details</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-3">Description</h4>
+                        <p class="text-gray-700 mb-4">Create and manage your own farm in this engaging simulation game. Plant and grow various crops, build farm structures, and expand your agricultural empire. Merge similar crops to evolve them and increase your production efficiency.</p>
+                        
+                        <h4 class="text-xl font-semibold mb-3">Features</h4>
+                        <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                            <li>Strategic crop placement</li>
+                            <li>Farm building construction</li>
+                            <li>Resource management</li>
+                            <li>Crop merging and evolution</li>
+                            <li>Farm expansion options</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-xl font-semibold mb-3">Game Info</h4>
+                        <div class="space-y-2 text-gray-700">
+                            <p><span class="font-semibold">Category:</span> Simulation, Strategy</p>
+                            <p><span class="font-semibold">Difficulty:</span> Easy to Medium</p>
+                            <p><span class="font-semibold">Released:</span> 2024/3/18</p>
+                            <p><span class="font-semibold">Rating:</span> ★★★★★ (4.7/5)</p>
+                            <p><span class="font-semibold">Plays:</span> 180,000</p>
+                        </div>
+                        
+                        <h4 class="text-xl font-semibold mt-6 mb-3">Tags</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full">farming</span>
+                            <span class="bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full">simulation</span>
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full">strategy</span>
+                            <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full">management</span>
+                            <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full">tycoon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 游戏4页面 -->
+<section id="game4Page" class="game-page py-8 container mx-auto px-4">
+    <div class="mb-4">
+        <button onclick="backToGamesList()" class="bg-apple-dark text-white px-4 py-2 rounded-md flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg>
+            Back to Games
+        </button>
+    </div>
+    
+    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+        <div class="p-6 bg-apple-dark text-white">
+            <h2 class="text-3xl font-bold">Hexa Sort</h2>
+            <p class="text-lg mt-2">Challenge your brain with this hexagonal color sorting puzzle game</p>
+        </div>
+        
+        <div class="game-container h-[600px] relative">
+            <iframe 
+                src="https://girlgamezone.pages.dev/game?id=puzzle4" 
+                class="absolute top-0 left-0 w-full h-full"
+                style="clip-path: inset(80px 0px 0px 0px)"
+                scrolling="no"
+                frameborder="0"
+                allowfullscreen
+                id="game4-iframe"
+            ></iframe>
+        </div>
+        
+        <div class="p-6">
+            <h3 class="text-2xl font-bold mb-4">Game Details</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="text-xl font-semibold mb-3">Description</h4>
+                    <p class="text-gray-700 mb-4">Hexa Sort is an engaging puzzle game where players must sort colors into the correct hexagonal containers. With a perfect blend of simplicity and challenge, this game tests your visual perception and strategic thinking as you manipulate colorful pieces to create organized patterns.</p>
+                    
+                    <h4 class="text-xl font-semibold mb-3">Features</h4>
+                    <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                        <li>Progressive difficulty levels</li>
+                        <li>Unique hexagonal grid system</li>
+                        <li>Color-based sorting mechanics</li>
+                        <li>Brain-teasing challenges</li>
+                        <li>Relaxing yet stimulating gameplay</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-semibold mb-3">Game Info</h4>
+                    <div class="space-y-2 text-gray-700">
+                        <p><span class="font-semibold">Category:</span> Puzzle, Strategy, Logic</p>
+                        <p><span class="font-semibold">Difficulty:</span> Medium</p>
+                        <p><span class="font-semibold">Released:</span> 2024/3/17</p>
+                        <p><span class="font-semibold">Rating:</span> ★★★★☆ (4.5/5)</p>
+                        <p><span class="font-semibold">Plays:</span> 200,000</p>
+                    </div>
+                    
+                    <h4 class="text-xl font-semibold mt-6 mb-3">Tags</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full">Logic</span>
+                        <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full">Puzzle</span>
+                        <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full">Strategy</span>
+                        <span class="bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full">Sorting</span>
+                        <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full">Hexagonal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <script>
+            // 页面加载时初始化
+            document.addEventListener('DOMContentLoaded', function() {
+                // 初始化所有游戏页面
+                initGamePages();
+                
+                // 检查URL是否指向特定游戏
+                const hash = window.location.hash;
+                if (hash && hash.length > 1) {
+                    const gameId = hash.substring(1);
+                    if (document.getElementById(gameId + 'Page')) {
+                        openGamePage(gameId);
+                    }
+                }
+            });
+            
+            // 初始化游戏页面
+            function initGamePages() {
+                // 隐藏所有游戏页面
+                document.querySelectorAll('.game-page').forEach(page => {
+                    page.style.display = 'none';
+                });
+                
+                // 初始化iframe源
+                document.querySelectorAll('iframe').forEach(iframe => {
+                    // 保存原始src到data-src属性
+                    if (iframe.src && !iframe.hasAttribute('data-src')) {
+                        iframe.setAttribute('data-src', iframe.src);
+                        iframe.src = '';
+                    }
+                });
+            }
+            
+            // 打开游戏页面
+            function openGamePage(gameId) {
+                // 初始化所有游戏页面
+                initGamePages();
+                
+                // 隐藏游戏列表页
+                document.getElementById('games-list-section').style.display = 'none';
+                
+                // 显示对应游戏页面
+                document.getElementById(gameId + 'Page').style.display = 'block';
+                
+                // 加载对应游戏iframe
+                const iframe = document.getElementById(gameId + '-iframe');
+                if (iframe && iframe.hasAttribute('data-src')) {
+                    iframe.src = iframe.getAttribute('data-src');
+                }
+                
+                // 滚动到顶部
+                window.scrollTo(0, 0);
+                
+                // 更新URL
+                history.pushState({gameId: gameId}, "", "#" + gameId);
+            }
+            
+            // 返回游戏列表
+            function backToGamesList() {
+                // 停止所有游戏iframe内容
+                document.querySelectorAll('iframe').forEach(iframe => {
+                    if (iframe.src) {
+                        // 保存当前src到data-src
+                        if (!iframe.hasAttribute('data-src')) {
+                            iframe.setAttribute('data-src', iframe.src);
+                        }
+                        // 清空src以停止游戏和声音
+                        iframe.src = '';
+                        
+                        // 确保iframe完全卸载后再设置data-src
+                        setTimeout(() => {
+                            if (!iframe.src && iframe.hasAttribute('data-src')) {
+                                // 保持data-src不变，但src为空
+                            }
+                        }, 100);
+                    }
+                });
+                
+                // 隐藏所有游戏页面
+                document.querySelectorAll('.game-page').forEach(page => {
+                    page.style.display = 'none';
+                });
+                
+                // 显示游戏列表页
+                document.getElementById('games-list-section').style.display = 'block';
+                
+                // 更新URL
+                history.pushState({}, "", "#games");
+            }
+            
+            // 处理浏览器后退按钮
+            window.addEventListener('popstate', function(event) {
+                if (event.state && event.state.gameId) {
+                    openGamePage(event.state.gameId);
+                } else {
+                    backToGamesList();
+                }
+            });
+            
+            // 分类标签点击
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    // 这里可以添加按分类筛选游戏的功能
+                });
+            });
+        </script>
+
+<!-- Footer -->
+<footer class="bg-apple-dark text-white py-8">
+    <div class="container mx-auto px-4">
+        <!-- Footer content -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h3 class="text-xl font-bold mb-4">GameStation Nexus</h3>
+                <p class="mb-4">Your ultimate online gaming destination offering various free gaming experiences.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-apple-blue"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg></a>
+                    <a href="#" class="hover:text-apple-blue"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723 10.038 10.038 0 01-3.127 1.195 4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg></a>
+                    <a href="#" class="hover:text-apple-blue"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg></a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="#home" class="hover:text-apple-blue transition-colors">Home</a></li>
+                    <li><a href="#games" class="hover:text-apple-blue transition-colors">Games</a></li>
+                    <li><a href="#about" class="hover:text-apple-blue transition-colors">About Us</a></li>
+                    <li><a href="#" class="hover:text-apple-blue transition-colors">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-apple-blue transition-colors">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                <p class="mb-2">Questions or suggestions? Get in touch</p>
+                <p class="mb-2">Email: contact@gamestationNexus.com</p>
+                <p>Phone: +123 456 7890</p>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-6 text-center">
+            <p>&copy; 2024 GameStation Nexus. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>   
