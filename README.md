@@ -1,7 +1,5 @@
 # GameStation Nexus 游戏站
 
-![GameStation Nexus Logo](图片/图片1.jpg)
-
 ## 项目简介
 
 GameStation Nexus是一个精心设计的在线游戏平台，提供多种类型的休闲游戏。平台采用现代化的界面设计，为用户提供流畅、愉悦的游戏体验。
